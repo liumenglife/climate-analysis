@@ -8,9 +8,14 @@ Created on Sat May 12 22:12:45 2018
 
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
+from sklearn.linear_model import LinearRegression
+import math
 
 data = pd.read_csv("data/GlobalLandTemperaturesByCity.csv")
 data.sort_values(by=['dt'])
+#us_data = data[data['Country'] == 'United States']
+#la_data = us_data[us_data['City'] == 'Los Angeles']
 
 def get_yearly_avg():
     current_year = data['dt'].iloc[0][:4]
@@ -108,21 +113,38 @@ def get_yearly_avg_country(country):
         possible_error += month['AverageTemperatureUncertainty']
     return (year_list, yearly_avg_temp, possible_error_pos, possible_error_neg)
 
+
 def make_graph_city(city, country):
     x, y, error1, error2 = get_yearly_avg_city(city, country)
+    x, y, error1, error2 = remove_gaps(x, y, error1, error2)
     fig, ax = plt.subplots(figsize=(10,4))
+    
+    #Set the graph
     ax.set_xlabel('Year')
     ax.set_ylabel('Average Temperature(°C)')
     ax.set_title('Yearly Average Temperatures in ' + city +', ' + country)
     ax.set_xticklabels(x, rotation = 90)
     ax.plot(x, y, label="Average Temperature")
-    ax.fill_between(x, error1, error2,  facecolor='blue', alpha=0.1, label = "Margin of Error")
-    plt.xticks(x[::10], x[::10])
+    ax.fill_between(x, error1, error2,  facecolor='blue', alpha=0.1, label = "Margin of Error")  
+    
+    #Compute linear regression to show relationship of temperature in respect to time
+    X = np.array(x).astype(np.int64)[:, np.newaxis]
+    reg = LinearRegression()
+    reg.fit(X, np.array(y).astype(np.int64))
+    y_pred = reg.predict(X)
+    ax.plot(x, y_pred, label="Predicted Behavior of Temperature over Time\n(Linear Regression)")
+    
+    #Show the graph
     ax.legend(loc=4)
+    plt.xticks(x[::10], x[::10])
     plt.show()
+    plt.close()
     
 def make_graph_country(country):
     x, y, error1, error2 = get_yearly_avg_country(country)
+    x, y, error1, error2 = remove_gaps(x, y, error1, error2)
+    
+    #Set the graph
     fig, ax = plt.subplots(figsize=(10,4))
     ax.set_xlabel('Year')
     ax.set_ylabel('Average Temperature(°C)')
@@ -130,12 +152,24 @@ def make_graph_country(country):
     ax.set_xticklabels(x, rotation = 90)
     ax.plot(x, y, label="Average Temperature")
     ax.fill_between(x, error1, error2,  facecolor='blue', alpha=0.1, label = "Margin of Error")
+    
+    #Compute linear regression to show relationship of temperature in respect to time
+    X = np.array(x).astype(np.int64)[:, np.newaxis]
+    reg = LinearRegression()
+    reg.fit(X, np.array(y).astype(np.int64))
+    y_pred = reg.predict(X)
+    ax.plot(x, y_pred, label="Predicted Behavior of Temperature over Time\n(Linear Regression)")
+    
+    #Show the graph
     plt.xticks(x[::10], x[::10])
     ax.legend(loc=4)
     plt.show()
     
 def make_graph_world():
     x, y, error1, error2 = get_yearly_avg()
+    x, y, error1, error2 = remove_gaps(x, y, error1, error2)
+    
+    #Set the graph
     fig, ax = plt.subplots(figsize=(10,4))
     ax.set_xlabel('Year')
     ax.set_ylabel('Average Temperature(°C)')
@@ -143,6 +177,24 @@ def make_graph_world():
     ax.set_xticklabels(x, rotation = 90)
     ax.plot(x, y, label="Average Temperature")
     ax.fill_between(x, error1, error2,  facecolor='blue', alpha=0.1, label = "Margin of Error")
+    
+    #Compute linear regression to show relationship of temperature in respect to time
+    X = np.array(x).astype(np.int64)[:, np.newaxis]
+    reg = LinearRegression()
+    reg.fit(X, np.array(y).astype(np.int64))
+    y_pred = reg.predict(X)
+    ax.plot(x, y_pred, label="Predicted Behavior of Temperature over Time\n(Linear Regression)")
+    
+    #Show the graph
     plt.xticks(x[::10], x[::10])
     ax.legend(loc=4)
     plt.show()
+
+#Remove gaps between years for the linear regression model to work.
+#In this case, we start at the firt year where there is no gap in any years after it.
+def remove_gaps(x, y, z1, z2):
+    start = 0
+    for i in range(len(x)):
+        if math.isnan(y[i]):
+            start = i+1
+    return (x[start:], y[start:], z1[start:], z2[start:])
