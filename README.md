@@ -11,8 +11,6 @@
 *You can freely explore the dataset yourself using your console. The pandas dataframe containing the dataset is called "data".
 
 ## Project Details and Goals
-For the following analysis I used the following dataset provided by Kaggle:
-
 My goal for this project is simple: I want to illustrate that climate change is causing the earth's overall temperature to slowly rise over time. According to the Intergovernmental Panel on Climate Change(IPCC), climate change is a persistent trend that occurs over a large period of time. Natural events such as El Nino cause short, temporal changes in average temperature so they are not classified as climate change. https://www.ipcc.ch/publications_and_data/ar4/wg1/en/ch9s9-1.html 
 
 To accomplish my goal, I will perform a regression analysis to show that the average temperature of the earth is rising over time. 
@@ -34,6 +32,8 @@ A regression analysis demonstrates the relationship between a set of independent
 ![Final output](example-outputs/la_graph.png)
 
 By plotting our predicted y-values onto the same graph, we can more clearly see the behavior of temperature over time. Since our regression line has a positive slope, this suggests that as time passes, temperature also rises. The predicted values also suggest that the Earth’s average temperature has risen by about 1 degree celsius since the 1750s. This strongly verifies the existence of climate change.
+
+![Final output](example-outputs/world_graph.png)
 
 ## Conclusion
 We have clearly illustrated that the world's temperature is rising around the world using clear and easy-to-understand visuals. If you plot multiple cities and countries and compare their climate data, you will see that the severity of the warming will vary greatly. This is due to other factors such as geography (e.g. how close to a body of water it is). But we can conclude that there is general trend of rising temperatures over time, regardless of location.
