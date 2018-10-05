@@ -2,14 +2,19 @@
 
 ### How to run program:
 - Download the following dataset and save it in a folder called data in your directory. [Get dataset](https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data/data) 
-- Install numpy, pandas, scikit-learn, and matplotlib for Python3. 
+- Install numpy, pandas, scikit-learn, plotly and matplotlib for Python3. 
 - Run climate-data.py using Python3.
 - The program will take a few minutes to read and sort the dataset.
 - Create a graph for city, country, or the world using the corresponding make_graph function. (Might take a few minutes.)
   - For example to make a graph for Los Angeles, type ```make_graph_city("Los Angeles", "United States")``` into your interpreter.
   - You can also make a graph for entire countries. Example: ```make_graph_country("China")```
-  
-*You can freely explore the dataset yourself using your Python interpreter/kernel. The reference for the pandas dataframe is stored in a variable called "data".
+
+*You can freely explore the dataset yourself using your Python interpreter/kernel. The reference for the pandas dataframe is stored in a variable called "data".*
+ 
+### Interactive Map for Reference
+- Run make_map.py to create an interactive map of average temperatures using plotly. This requires installing plotly for Python3 as well.
+- To save time: You can download worldmap.html or view online at https://plot.ly/~urielu/1/  
+- This is not part of the analysis and is a visualization tool to help understand each country's geographical location and local climate.
 
 ## Project Details and Goals
 My goal for this project is simple: I want to illustrate that the earth's overall temperature to slowly rising over time and how to identify climate change. According to the Intergovernmental Panel on Climate Change(IPCC), climate change is a persistent trend that occurs over a large period of time. Natural events such as El Nino cause short, temporal changes in average temperature so they are not classified as climate change. https://www.ipcc.ch/publications_and_data/ar4/wg1/en/ch9s9-1.html 
@@ -39,8 +44,12 @@ By plotting our predicted y-values onto the same graph, we can more clearly see 
 ![Final output](example-outputs/world_graph.png)
 
 ## Conclusion
-We have clearly illustrated that the world's temperature is rising around the world using clear and easy-to-understand visuals. Linear regression tells us that there is a positive correlation between temperature and time meaning as time passes, temperature will increase.  If you plot multiple cities and countries and compare their climate data, you will see that the severity of the warming can vary. This is due to other factors such as geography (e.g. how close to a body of water it is). But we can conclude that there is general trend of rising temperatures over time, regardless of location.
+We have clearly illustrated that the world's temperature is rising around the world using clear and easy-to-understand visuals. Linear regression tells us that there is a positive correlation between temperature and time meaning as time passes, temperature will increase.  If you plot multiple cities and countries and compare their climate data, you will see that the severity of the warming can vary. This is due to other factors such as geography (e.g. how close to a body of water it is). But we can conclude that there is general trend of rising temperatures over time, regardless of location. 
 
+*To get a sense of a country's geographical location and climate, please refer to the map below.
+![WorldMap](example-outputs/worldmap.png)
+
+*View the interactive version here: (https://plot.ly/~urielu/1/)*
 ## Possible Future Work and Improvements
 A more significant analysis will look at temperature ranges (highs and lows) rather than average temperature. In reality, scientists are more interested in maximum and minimum temperature values and how they are changing over time. More extreme temperatures are more likely to have a significant, observable effect on ecosystems which we have already observed in recent times with melting ice caps in the Antarctic, more frequent, larger wildfires in California, etc. These observable effects have noticable and measurable consequences in forms such as rising sea levels(melting ice caps) and economic cost(tax money to remove/control wildfires) which can support stronger arguements advocating for action towards combating the effects and causes of climate change. That is beyond the scope of this exploratory project but would be interesting to pursue in a future project with additional resources.
 
