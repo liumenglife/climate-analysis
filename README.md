@@ -14,7 +14,7 @@
 ### Interactive Map for Reference
 - This is not part of the analysis and is meant to be a visual reference to help understand each country's geographical location and local climate.
 - Run make_map.py to create an interactive map of average temperatures using plotly. This requires installing plotly for Python3 as well.
-- To save time: You can download worldmap.html or view online at https://plot.ly/~urielu/1/  
+- To save time: You can simply view online at https://plot.ly/~urielu/1/  
 
 ## Project Details and Goals
 My goal for this project is simple: I want to illustrate that the earth's overall temperature to slowly rising over time and how to identify climate change. According to the Intergovernmental Panel on Climate Change(IPCC), climate change is a persistent trend that occurs over a large period of time. Natural events such as El Nino cause short, temporal changes in average temperature so they are not classified as climate change. https://www.ipcc.ch/publications_and_data/ar4/wg1/en/ch9s9-1.html 
